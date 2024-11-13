@@ -1,13 +1,10 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <h2>{% if post.id %}Editar Post{% else %}Novo Post{% endif %}</h2>
+    <h2>{% if form.instance.pk %}Editar Post{% else %}Novo Post{% endif %}</h2>
     <form method="post">
         {% csrf_token %}
-        <label for="title">Título:</label>
-        <input type="text" name="title" value="{{ post.title }}" required><br><br>
-        <label for="content">Conteúdo:</label><br>
-        <textarea name="content" rows="10" required>{{ post.content }}</textarea><br><br>
+        {{ form.as_p }}  <!-- Exibe o formulário com Django Forms -->
         <button type="submit">Salvar</button>
     </form>
 {% endblock %}
